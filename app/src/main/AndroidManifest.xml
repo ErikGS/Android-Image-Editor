@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.github.iamutkarshtiwari.ananasproject">
+    package="me.mixal.edits">
 
     <application
         android:allowBackup="true"

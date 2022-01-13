@@ -1,4 +1,4 @@
-<img align="left" src="art/ananas.png" width="100" height="100" />
+<img align="left" src="art/edits.png" width="100" height="100" />
 
 # Ananas Photo Editor
 

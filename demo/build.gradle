@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
@@ -21,21 +20,21 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
     }
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation "androidx.appcompat:appcompat:${androidx_version}"
-    implementation "androidx.core:core-ktx:${core_ktx_version}"
-    implementation "io.reactivex.rxjava2:rxjava:${rxjava_version}"
-    implementation "io.reactivex.rxjava2:rxandroid:${rxandroid_version}"
-    implementation "com.github.bumptech.glide:glide:${glide_version}"
-    kapt "com.github.bumptech.glide:compiler:${glide_version}"
-    implementation project(':ananas')
+    implementation "androidx.appcompat:appcompat:1.4.1"
+    implementation "androidx.core:core-ktx:1.8.0-alpha02"
+    implementation "io.reactivex.rxjava2:rxjava:2.2.21"
+    implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
+    implementation "com.github.bumptech.glide:glide:4.12.0"
+    kapt "com.github.bumptech.glide:compiler:4.12.0"
+    implementation project(':mixaledits')
 
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version"
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutine_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.1"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2-native-mt"
 }
