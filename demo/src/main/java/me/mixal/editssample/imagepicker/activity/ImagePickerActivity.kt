@@ -52,7 +52,7 @@ class ImagePickerActivity : ParentActivity(R.layout.activity_main) {
                 } else {
                     Toast.makeText(
                         this,
-                        getString(R.string.ananas_image_editor_permission_not_granted),
+                        getString(R.string.permission_not_granted),
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -76,7 +76,7 @@ class ImagePickerActivity : ParentActivity(R.layout.activity_main) {
             throwable.printStackTrace()
             Toast.makeText(
                 this,
-                throwable.localizedMessage ?: getString(R.string.ananas_image_editor_select_error),
+                throwable.localizedMessage ?: getString(R.string.select_error),
                 Toast.LENGTH_SHORT
             ).show()
         }
@@ -122,7 +122,7 @@ class ImagePickerActivity : ParentActivity(R.layout.activity_main) {
         if (intentList.size > 0) {
             chooserIntent = Intent.createChooser(
                 intentList.removeAt(intentList.size - 1),
-                getString(R.string.ananas_image_editor_select_capture_image)
+                getString(R.string.select_capture_image)
             )
             chooserIntent!!.putExtra(
                 Intent.EXTRA_INITIAL_INTENTS,

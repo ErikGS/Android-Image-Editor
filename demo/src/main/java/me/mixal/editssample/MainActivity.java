@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         selectAlbum.setOnClickListener(this);
         editImage.setOnClickListener(this);
 
-        loadingDialog = BaseActivity.getLoadingDialog(this, R.string.iamutkarshtiwari_github_io_ananas_loading,
+        loadingDialog = BaseActivity.getLoadingDialog(this, R.string.loading,
                 false);
     }
 
@@ -130,7 +130,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             EditImageActivity.start(editResultLauncher, intent, this);
         } catch (Exception e) {
-            Toast.makeText(this, R.string.iamutkarshtiwari_github_io_ananas_not_selected, Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.not_selected, Toast.LENGTH_SHORT).show();
             Log.e("Demo App", e.getMessage());
         }
     }
@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         boolean isImageEdit = data.getBooleanExtra(EditImageActivity.IS_IMAGE_EDITED, false);
 
         if (isImageEdit) {
-            Toast.makeText(this, getString(R.string.ananas_image_editor_save_path, newFilePath), Toast.LENGTH_LONG).show();
+            Toast.makeText(this, getString(R.string.save_path, newFilePath), Toast.LENGTH_LONG).show();
         } else {
             newFilePath = data.getStringExtra(ImageEditorIntentBuilder.SOURCE_PATH);
         }
@@ -187,7 +187,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         this::setMainBitmap,
                         e -> { e.printStackTrace();
                             Toast.makeText(
-                                this, R.string.iamutkarshtiwari_github_io_ananas_load_error, Toast.LENGTH_SHORT).show();}
+                                this, R.string.load_error, Toast.LENGTH_SHORT).show();}
                 );
 
         compositeDisposable.add(applyRotationDisposable);

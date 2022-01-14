@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package me.mixal.edits.picchooser;
+package me.mixal.edits.chooser;
 
 class BucketItem extends GridItem {
 

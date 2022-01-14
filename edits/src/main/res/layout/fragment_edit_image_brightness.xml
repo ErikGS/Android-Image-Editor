@@ -1,0 +1,31 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/back_to_main"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:contentDescription="@string/exit_without_save"
+        android:src="@drawable/image_edit_back"
+        tools:ignore="ImageContrastCheck" />
+
+    <me.mixal.edits.editor.view.CustomSeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="10dp"
+        android:layout_marginLeft="8dp"
+        android:layout_toRightOf="@id/back_to_main"
+        android:max="2000"
+        android:progress="1000"
+        android:thumbTint="@color/white" />
+
+</RelativeLayout>

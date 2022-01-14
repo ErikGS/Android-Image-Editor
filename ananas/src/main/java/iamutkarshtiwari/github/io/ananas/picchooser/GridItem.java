@@ -1,4 +1,4 @@
-package me.mixal.edits.picchooser;
+package me.mixal.edits.chooser;
 
 class GridItem {
     final String name;

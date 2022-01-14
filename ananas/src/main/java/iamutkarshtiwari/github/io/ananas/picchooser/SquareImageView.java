@@ -1,4 +1,4 @@
-package me.mixal.edits.picchooser;
+package me.mixal.edits.chooser;
 
 import android.content.Context;
 import android.util.AttributeSet;

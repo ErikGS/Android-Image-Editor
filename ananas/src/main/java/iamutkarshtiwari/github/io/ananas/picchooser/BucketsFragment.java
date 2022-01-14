@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package me.mixal.edits.picchooser;
+package me.mixal.edits.chooser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,7 +73,7 @@ public class BucketsFragment extends Fragment {
 		}
 
 		if (buckets.isEmpty()) {
-			Toast.makeText(getActivity(), R.string.iamutkarshtiwari_github_io_ananas_no_images,
+			Toast.makeText(getActivity(), R.string.no_images,
 					Toast.LENGTH_SHORT).show();
 			getActivity().finish();
 		} else {
