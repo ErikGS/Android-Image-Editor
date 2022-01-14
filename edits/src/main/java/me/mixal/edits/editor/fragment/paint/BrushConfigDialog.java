@@ -55,7 +55,7 @@ public class BrushConfigDialog extends BottomSheetDialogFragment implements Seek
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         rvColor.setLayoutManager(layoutManager);
-        rvColor.setHasFixedSize(true);
+        //rvColor.setHasFixedSize(true);
         ColorPickerAdapter colorPickerAdapter = new ColorPickerAdapter(requireActivity());
         colorPickerAdapter.setOnColorPickerClickListener(colorCode -> {
             if (mProperties != null) {

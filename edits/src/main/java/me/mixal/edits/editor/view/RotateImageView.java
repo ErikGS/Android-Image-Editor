@@ -18,31 +18,31 @@ public class RotateImageView extends View {
     private Rect maxRect;
 
     private Bitmap bitmap;
-    private Matrix matrix = new Matrix();
+    private final Matrix matrix = new Matrix();
 
     private float scale;
     private int rotateAngle;
 
-    private RectF wrapRect = new RectF();
+    private final RectF wrapRect = new RectF();
     private Paint bottomPaint;
     private RectF originImageRect;
 
     public RotateImageView(Context context) {
         super(context);
-        init(context);
+        init();
     }
 
     public RotateImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init(context);
+        init();
     }
 
     public RotateImageView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(context);
+        init();
     }
 
-    private void init(Context context) {
+    private void init() {
         srcRect = new Rect();
         dstRect = new RectF();
         maxRect = new Rect();
@@ -84,18 +84,18 @@ public class RotateImageView extends View {
         }
 
         canvas.save();
-        canvas.scale(scale, scale, canvas.getWidth() >> 1,
-                canvas.getHeight() >> 1);
+        canvas.scale(scale, scale, getWidth() >> 1,
+                getHeight() >> 1);
         canvas.drawRect(wrapRect, bottomPaint);
-        canvas.rotate(rotateAngle, canvas.getWidth() >> 1,
-                canvas.getHeight() >> 1);
+        canvas.rotate(rotateAngle, getWidth() >> 1,
+                getHeight() >> 1);
         canvas.drawBitmap(bitmap, srcRect, dstRect, null);
         canvas.restore();
     }
 
     private void calculateWrapBox() {
         wrapRect.set(dstRect);
-        matrix.reset();// 重置矩阵为单位矩阵
+        matrix.reset(); // 重置矩阵为单位矩阵
         int centerX = getWidth() >> 1;
         int centerY = getHeight() >> 1;
         matrix.postRotate(rotateAngle, centerX, centerY);

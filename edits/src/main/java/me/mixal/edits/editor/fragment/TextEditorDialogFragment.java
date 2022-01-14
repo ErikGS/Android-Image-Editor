@@ -23,6 +23,7 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import me.mixal.edits.R;
 import me.mixal.edits.editor.adapter.ColorPickerAdapter;
 import me.mixal.edits.editor.interfaces.OnTextEditorListener;
@@ -82,15 +83,15 @@ public class TextEditorDialogFragment extends DialogFragment {
     public void onViewCreated(@NotNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         addTextEditText = view.findViewById(R.id.add_text_edit_text);
-        inputMethodManager = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputMethodManager = (InputMethodManager) requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
         TextView addTextDoneTv = view.findViewById(R.id.add_text_done_tv);
 
         //Setup the color picker for text color
         RecyclerView addTextColorPickerRecyclerView = view.findViewById(R.id.add_text_color_picker_recycler_view);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.HORIZONTAL, false);
         addTextColorPickerRecyclerView.setLayoutManager(layoutManager);
-        addTextColorPickerRecyclerView.setHasFixedSize(true);
-        ColorPickerAdapter colorPickerAdapter = new ColorPickerAdapter(getContext());
+        //addTextColorPickerRecyclerView.setHasFixedSize(true);
+        ColorPickerAdapter colorPickerAdapter = new ColorPickerAdapter(requireContext());
 
         //This listener will change the text color when clicked on any color from picker
         colorPickerAdapter.setOnColorPickerClickListener(colorCode -> {
@@ -99,6 +100,7 @@ public class TextEditorDialogFragment extends DialogFragment {
         });
 
         addTextColorPickerRecyclerView.setAdapter(colorPickerAdapter);
+        assert getArguments() != null;
         addTextEditText.setText(getArguments().getString(EXTRA_INPUT_TEXT));
         colorCode = getArguments().getInt(EXTRA_COLOR_CODE);
         addTextEditText.setTextColor(colorCode);
