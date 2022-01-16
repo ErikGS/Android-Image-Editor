@@ -10,9 +10,8 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 1
-        versionName "1.0.0"
-        multiDexEnabled true
+        versionCode 2
+        versionName "1.0.1"
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
@@ -20,6 +19,15 @@ android {
     }
     packagingOptions{
         doNotStrip '*/mips/*.so'
+    }
+    buildTypes {
+        release {
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            minifyEnabled true
+        }
+        debug {
+            jniDebuggable true
+        }
     }
 }
 

@@ -9,11 +9,14 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        multiDexEnabled true
     }
     buildTypes {
         release {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            minifyEnabled true
+        }
+        debug {
+            jniDebuggable true
         }
     }
     compileOptions {
