@@ -1,14 +1,13 @@
 package me.mixal.edits.chooser;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.bumptech.glide.Glide;
 
 import java.util.List;
 
@@ -59,22 +58,18 @@ class GalleryAdapter extends BaseAdapter {
                     bi.name + " - " + context.getString(R.string.images, bi.images) :
                     bi.name);
 
-            Glide.with(context)
-                    .load("file://" + bi.path)
-                    .into(holder.icon);
+            holder.icon.setImageURI(Uri.parse("file://" + bi.path));
 
             return convertView;
         } else {
             ImageView imageView;
             if (convertView == null) {
-                imageView = (ImageView) mInflater.inflate(R.layout.imageitem, null);
+                imageView = (ImageView) mInflater.inflate(R.layout.image_item, null);
             } else {
                 imageView = (ImageView) convertView;
             }
 
-            Glide.with(context)
-                    .load("file://" + items.get(position).path)
-                    .into(imageView);
+            imageView.setImageURI(Uri.parse(items.get(position).path));
 
             return imageView;
         }

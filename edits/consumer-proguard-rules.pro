@@ -16,15 +16,6 @@
 #   public *;
 #}
 
--keep class androidx.appcompat.widget.** { *; }
-
--dontwarn java.lang.invoke.StringConcatFactory
-
 -keepclasseswithmembers class * {
     native <methods>;
-}
-
--keepclassmembers,allowoptimization public class * {
-    public <methods>;
-    public <fields>;
 }

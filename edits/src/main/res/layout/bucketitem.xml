@@ -6,7 +6,7 @@
 
     <include
         android:id="@+id/icon"
-        layout="@layout/imageitem" />
+        layout="@layout/image_item" />
 
     <TextView
         android:id="@+id/text"

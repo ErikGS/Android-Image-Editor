@@ -5,12 +5,16 @@
     <application>
         <activity
             android:name=".editor.EditImageActivity"
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize|smallestScreenSize|screenLayout|navigation"
             android:label="@string/library_name"
+            android:launchMode="singleTask"
             android:exported="true" />
 
         <activity
             android:name=".chooser.SelectPictureActivity"
-            android:label="@string/not_selected"/>
+            android:configChanges="orientation|keyboard|keyboardHidden|screenSize|smallestScreenSize|screenLayout|navigation"
+            android:label="@string/not_selected"
+            android:launchMode="singleTask"/>
     </application>
 
 </manifest>
