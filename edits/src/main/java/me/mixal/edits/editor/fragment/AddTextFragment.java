@@ -66,15 +66,14 @@ public class AddTextFragment extends BaseEditFragment implements OnPhotoEditorLi
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         mainView = inflater.inflate(R.layout.fragment_edit_image_add_text, container, false);
         return mainView;
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         EditImageActivity editImageActivity = ensureEditActivity();
 
         inputMethodManager = (InputMethodManager) editImageActivity.getSystemService(Context.INPUT_METHOD_SERVICE);

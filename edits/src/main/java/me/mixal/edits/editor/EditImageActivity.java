@@ -117,11 +117,11 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
     private OnMainBitmapChangeListener onMainBitmapChangeListener;
     private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
-    public static void start(ActivityResultLauncher<Intent> launcher, Intent intent, Context context) {
-        if (TextUtils.isEmpty(intent.getStringExtra(ImageEditorIntentBuilder.SOURCE_PATH))) {
+    public static void start(ActivityResultLauncher<Intent> launcher, Intent intent/*, Context context*/) {
+        /*if (TextUtils.isEmpty(intent.getStringExtra(ImageEditorIntentBuilder.SOURCE_PATH))) {
             Toast.makeText(context, R.string.not_selected, Toast.LENGTH_SHORT).show();
             return;
-        }
+        }*/
         launcher.launch(intent);
     }
 
@@ -232,8 +232,7 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode,
-                                           @NotNull String[] permissions, @NotNull int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NotNull String[] permissions, @NotNull int[] grantResults) {
         if (requestCode == PERMISSIONS_REQUEST_CODE) {
             if (!(grantResults.length > 0
                     && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
@@ -368,6 +367,7 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
     }
 
     private void loadImageFromFile(String filePath) {
+        //compositeDisposable.clear();
         Disposable loadImageDisposable = loadImage(filePath)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

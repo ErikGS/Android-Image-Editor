@@ -113,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void editImageClick() {
         File outputFile = FileUtilsKt.generateEditFile();
         try {
+            assert outputFile != null;
             Intent intent = new ImageEditorIntentBuilder(this, path, outputFile.getAbsolutePath())
                     .withAddText()
                     .withPaintFeature()
@@ -127,8 +128,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     .forcePortrait(true)
                     .setSupportActionBarVisibility(false)
                     .build();
-
-            EditImageActivity.start(editResultLauncher, intent, this);
+            EditImageActivity.start(editResultLauncher, intent/*, this*/);
         } catch (Exception e) {
             Toast.makeText(this, R.string.not_selected, Toast.LENGTH_SHORT).show();
             Log.e("Demo App", e.getMessage());
