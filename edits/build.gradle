@@ -5,20 +5,25 @@ apply plugin: 'kotlin-kapt'
 group='me.mixal'
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
-
-    defaultConfig {
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 2
-        versionName "1.0.1"
+    packagingOptions{
+        doNotStrip '*/mips/*.so'
+    }
+    kotlinOptions {
+        jvmTarget = '11'
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
     }
-    packagingOptions{
-        doNotStrip '*/mips/*.so'
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    defaultConfig {
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 2
+        versionName "1.0.1"
+        ndk {
+            debugSymbolLevel 'SYMBOL_TABLE'
+        }
     }
     buildTypes {
         release {

@@ -18,6 +18,10 @@
 
 -keep class androidx.appcompat.widget.** { *; }
 
+#-dontwarn java.lang.invoke.StringConcatFactory
+#-keep class java.lang.invoke.StringConcatFactory.** { *; }
+#-keep class java.lang.invoke.** { *; }
+
 -keepclasseswithmembers class * {
     native <methods>;
 }

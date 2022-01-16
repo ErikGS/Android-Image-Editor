@@ -12,8 +12,3 @@ enum class RatioText constructor(@StringRes val ratioTextId: Int, val aspectRati
     RATIO_9_16(R.string.ratio9_16, AspectRatio(9, 16)),
     RATIO_16_9(R.string.ratio16_9, AspectRatio(16, 9))
 }
-
-data class AspectRatio(
-        val aspectX: Int = 0,
-        val aspectY: Int = 0
-)
