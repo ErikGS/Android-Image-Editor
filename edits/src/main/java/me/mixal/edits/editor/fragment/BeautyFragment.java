@@ -9,6 +9,9 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.SeekBar;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import me.mixal.edits.BaseActivity;
 import me.mixal.edits.R;
 import me.mixal.edits.editor.EditImageActivity;
@@ -33,7 +36,7 @@ public class BeautyFragment extends BaseEditFragment implements SeekBar.OnSeekBa
     private SeekBar smoothValueBar;
     private SeekBar whiteValueBar;
 
-    private CompositeDisposable disposable = new CompositeDisposable();
+    private final CompositeDisposable disposable = new CompositeDisposable();
     private Disposable beautyDisposable;
     private Bitmap finalBmp;
 
@@ -63,8 +66,8 @@ public class BeautyFragment extends BaseEditFragment implements SeekBar.OnSeekBa
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         View backToMenu = mainView.findViewById(R.id.back_to_main);
         backToMenu.setOnClickListener(new BackToMenuClick());// 返回主菜单
 

@@ -12,6 +12,9 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import me.mixal.edits.BaseActivity;
 import me.mixal.edits.R;
 import me.mixal.edits.editor.EditImageActivity;
@@ -35,7 +38,7 @@ public class RotateFragment extends BaseEditFragment implements OnClickListener 
     private RotateImageView rotatePanel;
     private Dialog loadingDialog;
 
-    private CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     public static RotateFragment newInstance() {
         return new RotateFragment();
@@ -56,8 +59,8 @@ public class RotateFragment extends BaseEditFragment implements OnClickListener 
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         this.rotatePanel = ensureEditActivity().rotatePanel;
         setClickListeners();

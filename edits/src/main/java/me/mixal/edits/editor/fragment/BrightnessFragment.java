@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SeekBar;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import me.mixal.edits.R;
@@ -51,8 +52,8 @@ public class BrightnessFragment extends BaseEditFragment {
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         View mBackToMenu = mainView.findViewById(R.id.back_to_main);
 
@@ -61,7 +62,7 @@ public class BrightnessFragment extends BaseEditFragment {
         mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                float value = progress - (seekBar.getMax() / 2);
+                float value = progress - (seekBar.getMax() / 2F);
                 activity.brightnessView.setBright(value / 10f);
             }
 

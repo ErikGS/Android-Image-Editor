@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
@@ -57,7 +58,7 @@ public class PaintFragment extends BaseEditFragment implements View.OnClickListe
     private float brushAlpha = MAX_ALPHA;
     private int brushColor = Color.WHITE;
 
-    private CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     public static PaintFragment newInstance() {
         return new PaintFragment();
@@ -71,8 +72,8 @@ public class PaintFragment extends BaseEditFragment implements View.OnClickListe
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         loadingDialog = BaseActivity.getLoadingDialog(getActivity(), R.string.loading,
                 false);
@@ -133,7 +134,7 @@ public class PaintFragment extends BaseEditFragment implements View.OnClickListe
         // Avoid IllegalStateException "Fragment already added"
         if (dialogFragment.isAdded()) return;
 
-        dialogFragment.show(requireFragmentManager(), tag);
+        dialogFragment.show(getParentFragmentManager(), tag);
 
         if (isEraser) {
             updateEraserSize();

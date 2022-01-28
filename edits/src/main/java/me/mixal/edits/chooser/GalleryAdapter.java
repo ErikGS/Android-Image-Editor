@@ -55,7 +55,7 @@ class GalleryAdapter extends BaseAdapter {
             }
             BucketItem bi = (BucketItem) items.get(position);
             holder.text.setText(bi.images > 1 ?
-                    bi.name + " - " + context.getString(R.string.images, bi.images) :
+                    bi.name + " - " + context.getString(R.string.placeholder_amount_images, bi.images) :
                     bi.name);
 
             holder.icon.setImageURI(Uri.parse("file://" + bi.path));

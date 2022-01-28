@@ -8,6 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import me.mixal.edits.BaseActivity;
@@ -33,7 +35,7 @@ public class FilterListFragment extends BaseEditFragment {
     private Bitmap currentBitmap;
     private Dialog loadingDialog;
 
-    private CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private final CompositeDisposable compositeDisposable = new CompositeDisposable();
 
     public static FilterListFragment newInstance() {
         return new FilterListFragment();
@@ -54,8 +56,8 @@ public class FilterListFragment extends BaseEditFragment {
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
         RecyclerView filterRecyclerView = mainView.findViewById(R.id.filter_recycler);
         FilterAdapter filterAdapter = new FilterAdapter(this, getContext());

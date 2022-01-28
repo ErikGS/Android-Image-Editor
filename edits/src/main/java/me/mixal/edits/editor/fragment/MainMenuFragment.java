@@ -5,6 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import me.mixal.edits.R;
 import me.mixal.edits.editor.ImageEditorIntentBuilder;
 import me.mixal.edits.editor.ModuleConfig;
@@ -16,8 +19,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.subjects.BehaviorSubject;
 
 
-public class MainMenuFragment extends BaseEditFragment implements
-        View.OnClickListener, MenuSectionnActions {
+public class MainMenuFragment extends BaseEditFragment implements View.OnClickListener, MenuSectionnActions {
     public static final int INDEX = ModuleConfig.INDEX_MAIN;
 
     public static final String TAG = MainMenuFragment.class.getName();
@@ -47,18 +49,15 @@ public class MainMenuFragment extends BaseEditFragment implements
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        mainView = inflater.inflate(R.layout.fragment_edit_image_main_menu,
-                null);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        mainView = inflater.inflate(R.layout.fragment_edit_image_main_menu, null);
         intentBundle = getArguments();
         return mainView;
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         stickerBtn = mainView.findViewById(R.id.btn_stickers);
         filterBtn = mainView.findViewById(R.id.btn_filter);
         cropBtn = mainView.findViewById(R.id.btn_crop);

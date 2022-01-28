@@ -118,7 +118,7 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
             android:clickable="true"
-            android:text="@string/materialcolorpicker__btnSelectColor"
+            android:text="@string/materialcolorpicker_btnSelectColor"
             android:focusable="true" />
 
     </RelativeLayout>

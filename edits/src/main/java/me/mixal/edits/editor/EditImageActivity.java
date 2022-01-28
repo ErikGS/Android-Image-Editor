@@ -2,36 +2,32 @@ package me.mixal.edits.editor;
 
 import android.Manifest;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.os.Build;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.DisplayMetrics;
 import android.util.Log;
-import android.view.Surface;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewFlipper;
-
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
-
+import androidx.lifecycle.Lifecycle;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+import androidx.viewpager2.widget.ViewPager2;
 import com.canhub.cropper.CropImageView;
-
 import org.jetbrains.annotations.NotNull;
-
 import me.mixal.edits.BaseActivity;
 import me.mixal.edits.R;
 import me.mixal.edits.editor.fragment.AddTextFragment;
@@ -109,9 +105,8 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
     public BrightnessFragment brightnessFragment;
     public SaturationFragment saturationFragment;
     protected int numberOfOperations = 0;
-    private int imageWidth, imageHeight;
     private Bitmap mainBitmap;
-    private Dialog loadingDialog;
+    //private Dialog loadingDialog;
     private MainMenuFragment mainMenuFragment;
     private RedoUndoController redoUndoController;
     private OnMainBitmapChangeListener onMainBitmapChangeListener;
@@ -135,18 +130,17 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
 
     @Override
     public void showLoadingDialog() {
-        loadingDialog.show();
+        //loadingDialog.show();
     }
 
     @Override
     public void dismissLoadingDialog() {
-        loadingDialog.dismiss();
+        //loadingDialog.dismiss();
     }
 
     private void getData() {
         isPortraitForced = getIntent().getBooleanExtra(ImageEditorIntentBuilder.FORCE_PORTRAIT, false);
         isSupportActionBarEnabled  = getIntent().getBooleanExtra(ImageEditorIntentBuilder.SUPPORT_ACTION_BAR_VISIBILITY, false);
-
         sourceFilePath = getIntent().getStringExtra(ImageEditorIntentBuilder.SOURCE_PATH);
         outputFilePath = getIntent().getStringExtra(ImageEditorIntentBuilder.OUTPUT_PATH);
         editorTitle = getIntent().getStringExtra(ImageEditorIntentBuilder.EDITOR_TITLE);
@@ -157,8 +151,7 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
         if (editorTitle != null) {
             titleView.setText(editorTitle);
         }
-        loadingDialog = BaseActivity.getLoadingDialog(this, R.string.loading,
-                false);
+        //loadingDialog = BaseActivity.getLoadingDialog(this, R.string.loading, false);
 
         if (getSupportActionBar() != null) {
             if (isSupportActionBarEnabled) {
@@ -167,10 +160,6 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
                 getSupportActionBar().hide();
             }
         }
-
-        DisplayMetrics metrics = getResources().getDisplayMetrics();
-        imageWidth = metrics.widthPixels / 2;
-        imageHeight = metrics.heightPixels / 2;
 
         bannerFlipper = findViewById(R.id.banner_flipper);
         bannerFlipper.setInAnimation(this, R.anim.in_bottom_to_top);
@@ -192,13 +181,14 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
         paintView = findViewById(R.id.custom_paint_view);
         brightnessView = findViewById(R.id.brightness_panel);
         saturationView = findViewById(R.id.contrast_panel);
+
         bottomGallery = findViewById(R.id.bottom_gallery);
+        BottomGalleryAdapter bottomGalleryAdapter = new BottomGalleryAdapter(getSupportFragmentManager());
+        bottomGallery.setAdapter(bottomGalleryAdapter);
 
         mainMenuFragment = MainMenuFragment.newInstance();
         mainMenuFragment.setArguments(getIntent().getExtras());
 
-        BottomGalleryAdapter bottomGalleryAdapter = new BottomGalleryAdapter(
-                this.getSupportFragmentManager());
         stickerFragment = StickerFragment.newInstance();
         filterListFragment = FilterListFragment.newInstance();
         cropFragment = CropFragment.newInstance();
@@ -210,8 +200,6 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
         addTextFragment = AddTextFragment.newInstance();
         setOnMainBitmapChangeListener(addTextFragment);
 
-        bottomGallery.setAdapter(bottomGalleryAdapter);
-
         mainImage.setFlingListener((e1, e2, velocityX, velocityY) -> {
             if (velocityY > 1) {
                 closeInputMethod();
@@ -220,9 +208,9 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
 
         redoUndoController = new RedoUndoController(this, findViewById(R.id.redo_undo_panel));
 
-        if (!PermissionUtils.hasPermissions(this, requiredPermissions)) {
+        /*if (!PermissionUtils.hasPermissions(this, requiredPermissions)) {
             ActivityCompat.requestPermissions(this, requiredPermissions, PERMISSIONS_REQUEST_CODE);
-        }
+        }*/
 
         loadImageFromFile(sourceFilePath);
     }
@@ -246,11 +234,12 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
     protected void onResume() {
         super.onResume();
         // Lock orientation for this activity
+        /*
         if (isPortraitForced) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         } else {
             setLockScreenOrientation(true);
-        }
+        }*/
     }
 
     private void closeInputMethod() {
@@ -308,8 +297,7 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
     }
 
     public void changeMainBitmap(Bitmap newBit, boolean needPushUndoStack) {
-        if (newBit == null)
-            return;
+        if (newBit == null) return;
 
         if (mainBitmap == null || mainBitmap != newBit) {
             if (needPushUndoStack) {
@@ -319,10 +307,7 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
             mainBitmap = newBit;
             mainImage.setImageBitmap(mainBitmap);
             mainImage.setDisplayType(ImageViewTouchBase.DisplayType.FIT_TO_SCREEN);
-
-            if (mode == MODE_TEXT) {
-                onMainBitmapChangeListener.onMainBitmapChange();
-            }
+            if (mode == MODE_TEXT) { onMainBitmapChangeListener.onMainBitmapChange(); }
         }
     }
 
@@ -340,7 +325,14 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
         if (numberOfOperations <= 0)
             return;
 
-        Disposable saveImageDisposable = saveImage(mainBitmap)
+        //loadingDialog.show();
+        if (TextUtils.isEmpty(outputFilePath)) return;
+        BitmapUtils.saveBitmap(mainBitmap, outputFilePath);
+        resetOpTimes();
+        onSaveTaskDone();
+        //loadingDialog.dismiss();
+
+        /*Disposable saveImageDisposable = saveImage(mainBitmap)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(subscriber -> loadingDialog.show())
@@ -354,21 +346,28 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
                     }
                 }, e -> showToast(R.string.save_error));
 
-        compositeDisposable.add(saveImageDisposable);
+        compositeDisposable.add(saveImageDisposable);*/
     }
 
-    private Single<Boolean> saveImage(Bitmap finalBitmap) {
+    /*private Single<Boolean> saveImage(Bitmap finalBitmap) {
         return Single.fromCallable(() -> {
             if (TextUtils.isEmpty(outputFilePath))
                 return false;
 
             return BitmapUtils.saveBitmap(finalBitmap, outputFilePath);
         });
-    }
+    }*/
 
     private void loadImageFromFile(String filePath) {
         //compositeDisposable.clear();
-        Disposable loadImageDisposable = loadImage(filePath)
+        //loadingDialog.show();
+        mainMenuFragment.setMenuOptionsClickable(false);
+        changeMainBitmap(BitmapUtils.imageOrientationValidator(
+                BitmapFactory.decodeFile(filePath), filePath), false
+        );
+        mainMenuFragment.setMenuOptionsClickable(true);
+        //loadingDialog.dismiss();
+        /*Disposable loadImageDisposable = loadImage(filePath)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(subscriber -> {
@@ -382,13 +381,16 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
                     Log.wtf("Error", e.getMessage());
                 });
 
-        compositeDisposable.add(loadImageDisposable);
+        compositeDisposable.add(loadImageDisposable);*/
     }
 
-    private Single<Bitmap> loadImage(String filePath) {
-        return Single.fromCallable(() -> BitmapUtils.getSampledBitmap(filePath, imageWidth,
-                imageHeight));
-    }
+    /*private Single<Bitmap> loadImage(String filePath) {
+        return Single.fromCallable(() -> BitmapUtils.imageOrientationValidator(
+                BitmapFactory.decodeFile(filePath),
+                filePath
+        ));
+        //return Single.fromCallable(() -> BitmapUtils.getSampledBitmap(filePath));
+    }*/
 
     private void showToast(@StringRes int resId) {
         Toast.makeText(this, resId, Toast.LENGTH_SHORT).show();
@@ -403,12 +405,12 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
             redoUndoController.onDestroy();
         }
 
-        if (!isPortraitForced) {
+        /*if (!isPortraitForced) {
             setLockScreenOrientation(false);
-        }
+        }*/
     }
 
-    protected void setLockScreenOrientation(boolean lock) {
+    /*protected void setLockScreenOrientation(boolean lock) {
         if (Build.VERSION.SDK_INT >= 18) {
             setRequestedOrientation(lock ? ActivityInfo.SCREEN_ORIENTATION_LOCKED : ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);
             return;
@@ -435,7 +437,7 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
             }
         } else
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);
-    }
+    }*/
 
     public void increaseOpTimes() {
         numberOfOperations++;
@@ -454,15 +456,15 @@ public class EditImageActivity extends BaseActivity implements OnLoadingDialogLi
         return mainBitmap;
     }
 
-    private final class BottomGalleryAdapter extends FragmentPagerAdapter {
-        BottomGalleryAdapter(FragmentManager fm) {
+    private class BottomGalleryAdapter extends FragmentPagerAdapter {
+        public BottomGalleryAdapter(@NonNull FragmentManager fm) {
             super(fm);
         }
 
         @NonNull
         @Override
-        public Fragment getItem(int index) {
-            switch (index) {
+        public Fragment getItem(int position) {
+            switch (position) {
                 case MainMenuFragment.INDEX:
                     return mainMenuFragment;
                 case StickerFragment.INDEX:

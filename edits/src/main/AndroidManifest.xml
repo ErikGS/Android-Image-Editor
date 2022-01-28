@@ -4,14 +4,13 @@
 
     <application>
         <activity
-            android:name=".editor.EditImageActivity"
+            android:name="me.mixal.edits.editor.EditImageActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize|smallestScreenSize|screenLayout|navigation"
             android:label="@string/library_name"
-            android:launchMode="singleTask"
-            android:exported="true" />
+            android:launchMode="singleTask" />
 
         <activity
-            android:name=".chooser.SelectPictureActivity"
+            android:name="me.mixal.edits.chooser.SelectPictureActivity"
             android:configChanges="orientation|keyboard|keyboardHidden|screenSize|smallestScreenSize|screenLayout|navigation"
             android:label="@string/not_selected"
             android:launchMode="singleTask"/>

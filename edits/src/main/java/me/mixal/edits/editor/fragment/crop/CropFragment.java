@@ -13,6 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.ColorRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 import com.canhub.cropper.CropImageView;
@@ -127,10 +129,10 @@ public class CropFragment extends BaseEditFragment {
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
 
-        loadingDialogListener = ensureEditActivity();
+    loadingDialogListener = ensureEditActivity();
 
         View backToMenu = mainView.findViewById(R.id.back_to_main);
         ratioList = mainView.findViewById(R.id.ratio_list_group);

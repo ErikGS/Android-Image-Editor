@@ -122,7 +122,7 @@ public class ColorPicker extends Dialog implements SeekBar.OnSeekBarChangeListen
             greenSeekBar.setProgress(green);
             blueSeekBar.setProgress(blue);
         } else {
-            codHex.setError(c.getResources().getText(R.string.materialcolorpicker__errHex));
+            codHex.setError(c.getResources().getText(R.string.materialcolorpicker_errHex));
         }
     }
 

@@ -15,6 +15,7 @@ import android.widget.Toast
 import android.os.Build
 import me.mixal.editssample.imagepicker.activity.ImagePickerActivity
 import android.content.pm.PackageManager
+import android.graphics.BitmapFactory
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
@@ -192,11 +193,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun loadBitmapFromFile(filePath: String?): Single<Bitmap> {
         return Single.fromCallable {
-            BitmapUtils.getSampledBitmap(
-                filePath,
-                imageWidth / 4,
-                imageHeight / 4
-            )
+            BitmapUtils.imageOrientationValidator(BitmapFactory.decodeFile(filePath), filePath)
+            //BitmapUtils.getSampledBitmap(filePath, imageWidth / 4, imageHeight / 4)
         }
     }
 }
