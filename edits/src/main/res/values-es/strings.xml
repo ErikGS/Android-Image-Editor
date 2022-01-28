@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="library_name">Editor de Foto</string>
     <string name="no_images">Imagen no encontrada</string>
-    <string name="images">%d imágenes</string>
-    <string name="done">HECHO</string>
+    <string name="placeholder_amount_images">%d imágenes</string>
+    <string name="finalize">HECHO</string>
     <string name="apply">APLICAR</string>
 
     <string name="stickers">Stickers</string>
@@ -19,13 +18,13 @@
     <string name="size">Tamaño</string>
     <string name="opacity">Opacidad</string>
 
-    <string name="materialcolorpicker__errHex">Formato de Codigo Hex incorrecto</string>
-    <string name="materialcolorpicker__btnSelectColor">Seleccionar</string>
+    <string name="materialcolorpicker_errHex">Formato de Codigo Hex incorrecto</string>
+    <string name="materialcolorpicker_btnSelectColor">Seleccionar</string>
     <string name="saving_image">Guardando…</string>
     <string name="input_hint">Campo de Texto …</string>
 
-    <string name="not_selected">Porfavor elija una imagen para editar</string>
-    <string name="auto_newline">NuevaLineaAuto.</string>
+    <string name="not_selected">Elija una imagen para editar</string>
+    <string name="auto_newline">Nueva Línea Auto.</string>
     <string name="save_error">Error en guardado!</string>
     <string name="load_error">Fallo la carga de imagen!</string>
     <string name="loading">Cargando…</string>
@@ -79,12 +78,12 @@
     </string-array>
 
     <string-array name="type_names">
-        <item>Tipo 1</item>
-        <item>Tipo 2</item>
-        <item>Tipo 3</item>
-        <item>Tipo 4</item>
-        <item>Tipo 5</item>
-        <item>Tipo 6</item>
+        <item>Gracioso</item>
+        <item>Elegante</item>
+        <item>Divertido</item>
+        <item>Amable</item>
+        <item>Cortés</item>
+        <item>Globos</item>
     </string-array>
 
     <integer-array translatable="false" name="type_count">

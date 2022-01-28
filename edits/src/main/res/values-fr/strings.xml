@@ -1,8 +1,7 @@
 <resources>
-    <string name="library_name">Éditeur de photos</string>
     <string name="no_images">Aucune image trouvée</string>
-    <string name="images">%d images</string>
-    <string name="done">TERMINÉ</string>
+    <string name="placeholder_amount_images">%d images</string>
+    <string name="finalize">TERMINÉ</string>
     <string name="apply">APPLIQUER</string>
 
     <string name="stickers">Autocollants</string>
@@ -18,13 +17,13 @@
     <string name="size">Taille</string>
     <string name="opacity">Opacité</string>
 
-    <string name="materialcolorpicker__errHex">Format de code hexadécimal incorrect</string>
-    <string name="materialcolorpicker__btnSelectColor">Sélectionner</string>
-    <string name="saving_image">Économie…</string>
-    <string name="input_hint">Texte de saisie …</string>
+    <string name="materialcolorpicker_errHex">Code Hexadécimal invalide</string>
+    <string name="materialcolorpicker_btnSelectColor">Sélectionner</string>
+    <string name="saving_image">En gardant…</string>
+    <string name="input_hint">Zone de texte …</string>
 
-    <string name="not_selected">Veuillez choisir une image à modifier</string>
-    <string name="auto_newline">Nouvelle ligne automatique</string>
+    <string name="not_selected">Choisir une image à modifier</string>
+    <string name="auto_newline">Nouvelle Ligne Automatique</string>
     <string name="save_error">Enregistrer l\'erreur!</string>
     <string name="load_error">Échec du chargement de l\'image!</string>
     <string name="loading">Chargement…</string>
@@ -78,12 +77,12 @@
     </string-array>
 
     <string-array name="type_names">
-        <item>Type 1</item>
-        <item>Type 2</item>
-        <item>Type 3</item>
-        <item>Type 4</item>
-        <item>Type 5</item>
-        <item>Type 6</item>
+        <item>Marrant</item>
+        <item>Élégant</item>
+        <item>Divertido</item>
+        <item>Amusement</item>
+        <item>Poli</item>
+        <item>Bulles</item>
     </string-array>
 
     <integer-array translatable="false" name="type_count">

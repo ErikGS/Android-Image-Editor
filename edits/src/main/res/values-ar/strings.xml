@@ -1,8 +1,7 @@
 <resources>
-    <string name="library_name">معدل الصور</string>
     <string name="no_images">لم يتم العثور على صورة</string>
-    <string name="images">%d الصور</string>
-    <string name="done">منجز</string>
+    <string name="placeholder_amount_images">%d الصور</string>
+    <string name="finalize">منجز</string>
     <string name="apply">تطبيق</string>
 
     <string name="stickers">ملصقات</string>
@@ -18,8 +17,8 @@
     <string name="size">بحجم</string>
     <string name="opacity">العتامة</string>
 
-    <string name="materialcolorpicker__errHex">تنسيق الكود السداسي غير صحيح</string>
-    <string name="materialcolorpicker__btnSelectColor">تحديد</string>
+    <string name="materialcolorpicker_errHex">تنسيق الكود السداسي غير صحيح</string>
+    <string name="materialcolorpicker_btnSelectColor">تحديد</string>
     <string name="saving_image">إنقاذ…</string>
     <string name="input_hint">أدخل نصآ…</string>
 
