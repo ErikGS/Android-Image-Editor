@@ -1,8 +1,8 @@
 <resources>
-    <string name="library_name">Photo Editor</string>
+    <string name="library_name" translatable="false">mixal Edits</string>
     <string name="no_images">No image found</string>
-    <string name="images">%d images</string>
-    <string name="done">DONE</string>
+    <string name="placeholder_amount_images">%d images</string>
+    <string name="finalize">DONE</string>
     <string name="apply">APPLY</string>
 
     <string name="stickers">Stickers</string>
@@ -20,13 +20,13 @@
     <string name="size">Size</string>
     <string name="opacity">Opacity</string>
 
-    <string name="materialcolorpicker__errHex">Hex Code Format incorrect</string>
-    <string name="materialcolorpicker__btnSelectColor">Select</string>
+    <string name="materialcolorpicker_errHex">Invalid Hex Code</string>
+    <string name="materialcolorpicker_btnSelectColor">Select</string>
     <string name="saving_image">Saving…</string>
-    <string name="input_hint">Input Text …</string>
+    <string name="input_hint">Input Text…</string>
 
-    <string name="not_selected">Please choose an image for edit</string>
-    <string name="auto_newline">AutoNewline</string>
+    <string name="not_selected">Choose an image for edit</string>
+    <string name="auto_newline">Auto New Line</string>
     <string name="save_error">Save error!</string>
     <string name="load_error">Failed to load the image!</string>
     <string name="loading">Loading…</string>
@@ -80,12 +80,12 @@
     </string-array>
 
     <string-array name="type_names">
-        <item>Type 1</item>
-        <item>Type 2</item>
-        <item>Type 3</item>
-        <item>Type 4</item>
-        <item>Type 5</item>
-        <item>Type 6</item>
+        <item>Amusing</item>
+        <item>Elegant</item>
+        <item>Funny</item>
+        <item>Cute</item>
+        <item>Polite</item>
+        <item>Bubbles</item>
     </string-array>
 
     <integer-array translatable="false" name="type_count">
